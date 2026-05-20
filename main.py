@@ -1,5 +1,7 @@
 #Server Scraper
 from ServerScraper import scrapeServerJar
+from userInterface import addPlugins
+from pluginScraper import scrapePlugin
 
 def fileCreator():
     temp = scrapeServerJar()
@@ -14,8 +16,13 @@ if __name__ == '__main__':
     shFileName = fileCreator()
     with open(shFileName,'a') as f:
         f.write("/*  #!/bin/bash \n")
+        f.write("# get server jar \n")
         f.write("wget " + jarFile + "\n")
-        
+    plugins = addPlugins()
+    for i in range(len(plugins) - 1):
+        print(scrapePlugin(int(plugins[i])))
+
+
 
 
 
