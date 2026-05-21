@@ -21,4 +21,15 @@ def configureGlobal():
         if edit == "y":
             #save file to string, edit string, overwrite file with string???
             newVal = input("what would you like the new value to be? ")
+            nSetting = setting.split(":")
+            nSetting[1] = newVal
+            stitchedSetting = nSetting[0] + ":" + nSetting[1]
+            config = open(GCFile, "r")
+            nconfig = config.read()
+            nconfig = nconfig.replace(setting, stitchedSetting)
+            config.close()
+            config = open(GCFile, "w")
+            config.write(nconfig)
+            config.close()
+
 
