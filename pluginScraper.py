@@ -6,16 +6,9 @@ from bs4 import BeautifulSoup
 
 def scrapePlugin(index):
     if index == 1:
-        url = 'https://geysermc.org/download/?project=geyser'
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        for text in soup.find_all('a', href=re.compile("paper")):
-            dwnld = text.get('href')
-            return dwnld
+        return "https://download.geysermc.org/v2/projects/geyser/versions/latest/builds/latest/downloads/spigot"
     elif index == 2:
-        url = 'https://papermc.io/downloads/paper'
-        response = requests.get(url)
-        soup = BeautifulSoup(response.content, 'html.parser')
+        return "https://download.geysermc.org/v2/projects/floodgate/versions/latest/builds/latest/downloads/spigot"
     elif index == 3:
         url = 'https://www.spigotmc.org/resources/plan-player-analytics.32536/'
         response = requests.get(url)
