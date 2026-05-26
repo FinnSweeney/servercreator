@@ -10,6 +10,50 @@ def addPlugins():
         plugins.append(pluginInput)
 
     return plugins
+def configureAuto():
+    GCFile = "/config/paper-global.yml"
+    globalSettings = {
+        "player-max-concurrent-chunk-generates: ":"-1",
+        "player-max-concurrent-chunk-loads: ":"-1",
+        "player-max-chunk-load-rate: ":"-1",
+        "player-max-chunk-send-rate: ": "-1",
+        "use-display-name-in-quit-message: ": "true",
+        "fix-far-end-terrain-generation: ": "false",
+        #update
+        "io-threads: ": "4",
+        "worker-threads: ": "8"
+    }
+    worldSettings = {
+        "optimize-explosions: ":"true",
+        "allow-using-signs-inside-spawn-protection: ": "true",
+        "netty-threads": "3"
+    }
+    serverProperties = {
+        "difficulty=":"normal",
+        "enforce-whitelist=": "true",
+        "server-port=": "43075",
+        "spawn-protection=": "0",
+        "view-distance=": "32",
+        "white-list=": "true",
+    }
+    for setting, value in globalSettings.items():
+        config = open(GCFile, "r")
+        nConfig = config.read()
+        nConfig = nConfig.replace(setting, value)
+        config.close()
+        config = open(GCFile, "w")
+        config.write(nConfig)
+        config.close()
+
+            # save file to string, edit string, overwrite file with string???
+    for setting, value in globalSettings.items():
+        config = open(GCFile, "r")
+        nConfig = config.read()
+        nConfig = nConfig.replace(setting, value)
+        config.close()
+        config = open(GCFile, "w")
+        config.write(nConfig)
+        config.close()
 
 def configureGlobal():
     GCFile = "/config/paper-global.yml"
@@ -25,11 +69,11 @@ def configureGlobal():
             nSetting[1] = newVal
             stitchedSetting = nSetting[0] + ":" + nSetting[1]
             config = open(GCFile, "r")
-            nconfig = config.read()
-            nconfig = nconfig.replace(setting, stitchedSetting)
+            nConfig = config.read()
+            nConfig = nConfig.replace(setting, stitchedSetting)
             config.close()
             config = open(GCFile, "w")
-            config.write(nconfig)
+            config.write(nConfig)
             config.close()
 
 

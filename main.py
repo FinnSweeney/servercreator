@@ -27,7 +27,13 @@ if __name__ == '__main__':
         f.write("sleep 4m \n")
         f.write("kill $MyPID \n")
     #navigate to plugins folder
-        f.write("cd plugins \n")
+    eula = open("eula.txt",'r')
+    newEula = eula.read()
+    newEula = newEula.replace("false", "true")
+    eula.close()
+    eula = open("eula.txt", 'w')
+    eula.write(newEula)
+
 
     #start downloading plugins
     plugins = addPlugins()
