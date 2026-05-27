@@ -18,7 +18,7 @@ if __name__ == '__main__':
     splitString = jarFile.split("/")
     jarName = splitString[len(splitString) - 1]
     with open(shFileName,'a') as f:
-        f.write("/*  #!/bin/bash \n")
+        f.write("#!/usr/bin/env bash \n")
         f.write("cd \"$(dirname \"$0\")\"\n")
         f.write("# get server jar \n")
         f.write("wget " + jarFile + "\n")
@@ -26,14 +26,16 @@ if __name__ == '__main__':
         f.write("MyPID=$! \n")
         f.write("sleep 4m \n")
         f.write("kill $MyPID \n")
+        f.write("cd plugins \n")
     #navigate to plugins folder
+    '''
     eula = open("eula.txt",'r')
     newEula = eula.read()
     newEula = newEula.replace("false", "true")
     eula.close()
     eula = open("eula.txt", 'w')
     eula.write(newEula)
-
+'''
 
     #start downloading plugins
     plugins = addPlugins()
@@ -42,6 +44,8 @@ if __name__ == '__main__':
         with open(shFileName, 'a') as f:
             f.write("wget " + scrapePlugin(int(plugins[i])) + "\n")
     with open(shFileName,'a') as f:
+        f.write("mv spigot Geyser.jar\n")
+        f.write("mv spigot.1 Floodgate.jar\n")
         f.write("cd .. \n")
         f.write("java -jar "+ jarName + " &\n")
         f.write("MyPID2=$! \n")
